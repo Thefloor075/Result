@@ -3,22 +3,34 @@ import numpy as np
 
 
 X = []
-Y = []
+Mean = []
+Std = []
 
-print('Entrer la taille du réseau')
-n = int(input())
+N = 20
 
-while(len(X) != 10):
-	input_X = input()
-	if input_X != '':
-		X.append(float(input_X))
+X = list(i for i in range(2,N+1))
 
-while(len(Y) != 10):
+N = N - 1
+
+while(len(Mean) != N):
 	input_Y = input()
 	if input_Y != '':
-		Y.append(float(input_Y))
+		Mean.append(float(input_Y))
+
+while(len(Std) != N):
+	input_Std = input()
+	if input_Std != '':
+		Std.append(float(input_Std))
 
 
+file1 = open("data.txt","w+")
+for i in range(N):
+	str = '({}, {}) +- (0.0, {})'.format(round(X[i]), round(Mean[i]), Std[i]) + '\n'
+	file1.write(str)
+
+file1.close()
+	
+"""
 plt.ylabel('Moyenne')
 plt.xlabel('%')
 plt.plot(100*np.array(X),np.array(Y),'ro')
@@ -29,7 +41,7 @@ plt.xlabel('%')
 plt.plot(100*np.array(X[1::]),np.array(Y[1::]),'ro')
 plt.savefig('Picture_{}_1.png'.format(n))
 
-
+"""
 
 
 
